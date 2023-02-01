@@ -1,6 +1,5 @@
 package mate.academy.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import mate.academy.model.Master;
 import mate.academy.model.Order;

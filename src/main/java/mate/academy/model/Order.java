@@ -11,8 +11,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
