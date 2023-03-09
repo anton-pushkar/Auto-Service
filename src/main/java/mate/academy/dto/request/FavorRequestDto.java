@@ -10,6 +10,6 @@ import mate.academy.model.Order;
 public class FavorRequestDto {
     private Order order;
     private Master master;
-    private double cost;
+    private Double cost;
     private String masterStatus;
 }

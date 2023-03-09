@@ -27,7 +27,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public List<Order> getOrdersByOwnerId(Long id) {
-        Owner owner = repository.getReferenceById(id);
+        Owner owner = repository.getById(id);
         return owner.getOrders();
     }
 }

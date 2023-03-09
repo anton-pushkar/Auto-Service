@@ -30,9 +30,9 @@ class MasterServiceImplTest {
         Favor favor1 = new Favor();
         Favor favor2 = new Favor();
         Favor favor3 = new Favor();
-        favor1.setCost(100);
-        favor2.setCost(200);
-        favor3.setCost(300);
+        favor1.setCost(100.0);
+        favor2.setCost(200.0);
+        favor3.setCost(300.0);
         favor1.setMasterStatus(MasterSalaryStatus.UNPAID);
         favor2.setMasterStatus(MasterSalaryStatus.PAID);
         favor3.setMasterStatus(MasterSalaryStatus.UNPAID);
@@ -40,7 +40,7 @@ class MasterServiceImplTest {
         Order order = new Order();
         order.setFavorList(favorList);
         testMaster.setOrdersList(List.of(order));
-        Mockito.when(masterRepository.getReferenceById(1L)).thenReturn(testMaster);
+        Mockito.when(masterRepository.getById(1L)).thenReturn(testMaster);
         double actual = masterService.getMasterSalaryById(1L);
         assertEquals(actual, 160);
         assertEquals(favor1.getMasterStatus(), MasterSalaryStatus.PAID);

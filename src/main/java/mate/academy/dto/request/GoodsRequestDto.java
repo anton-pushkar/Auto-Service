@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class GoodsRequestDto {
     private String name;
-    private double cost;
+    private Double cost;
 }

@@ -22,6 +22,6 @@ public class OrderResponseDto {
     private List<Goods> goodsList;
 
     private OrderStatus status;
-    private double cost;
+    private Double cost;
     private LocalDateTime finishedTime;
 }

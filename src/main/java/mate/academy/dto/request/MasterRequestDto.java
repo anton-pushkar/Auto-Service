@@ -8,7 +8,6 @@ import mate.academy.model.Order;
 @Getter
 @Setter
 public class MasterRequestDto {
-
     private String name;
     private List<Order> ordersList;
 }

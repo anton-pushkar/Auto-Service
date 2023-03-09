@@ -1,8 +1,11 @@
 package mate.academy.dto.mapper;
 
+import java.time.LocalDateTime;
 import mate.academy.dto.request.OrderRequestDto;
+import mate.academy.dto.request.OrderRequestDtoForCreate;
 import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Order;
+import mate.academy.model.OrderStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,5 +35,16 @@ public class OrderMapper {
         dto.setDescription(order.getDescription());
         dto.setGoodsList(order.getGoodsList());
         return dto;
+    }
+
+    public Order toModelForCreate(OrderRequestDtoForCreate dto) {
+        Order order = new Order();
+        order.setCar(dto.getCar());
+        order.setDescription(dto.getDescription());
+        order.setFavorList(dto.getFavorList());
+        order.setGoodsList(dto.getGoodsList());
+        order.setStartTime(LocalDateTime.now());
+        order.setStatus(OrderStatus.ACCEPTED);
+        return order;
     }
 }
