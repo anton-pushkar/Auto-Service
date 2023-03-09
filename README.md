@@ -17,6 +17,7 @@ percentage of master`s salary [here](src/main/java/mate/academy/service/impl/Mas
 # Technologies
 - Maven
 - JDK 17
+- Docker
 - Lombok
 - Data JPA
 - Hibernate
