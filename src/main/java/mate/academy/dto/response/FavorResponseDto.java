@@ -11,6 +11,6 @@ public class FavorResponseDto {
     private Long id;
     private Order order;
     private Master master;
-    private double cost;
+    private Double cost;
     private String masterStatus;
 }

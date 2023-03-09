@@ -8,5 +8,5 @@ import lombok.Setter;
 public class GoodsResponseDto {
     private Long id;
     private String name;
-    private double cost;
+    private Double cost;
 }

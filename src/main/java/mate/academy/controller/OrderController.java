@@ -4,17 +4,12 @@ import mate.academy.dto.mapper.GoodsMapper;
 import mate.academy.dto.mapper.OrderMapper;
 import mate.academy.dto.request.GoodsRequestDto;
 import mate.academy.dto.request.OrderRequestDto;
+import mate.academy.dto.request.OrderRequestDtoForCreate;
 import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Goods;
 import mate.academy.model.Order;
 import mate.academy.service.OrderService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
@@ -30,8 +25,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public OrderResponseDto create(@RequestBody OrderRequestDto dto) {
-        Order order = orderMapper.toModel(dto);
+    public OrderResponseDto create(@RequestBody OrderRequestDtoForCreate dto) {
+        Order order = orderMapper.toModelForCreate(dto);
         service.create(order);
         return orderMapper.toResponseDto(order);
     }
@@ -44,7 +39,7 @@ public class OrderController {
         return orderMapper.toResponseDto(order);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public OrderResponseDto update(@PathVariable Long id,
                                    @RequestBody OrderRequestDto dto) {
         Order order = orderMapper.toModel(dto);

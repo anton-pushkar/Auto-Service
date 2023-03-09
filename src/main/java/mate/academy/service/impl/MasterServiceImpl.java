@@ -30,14 +30,14 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public List<Order> getMasterOrdersById(Long id) {
-        Master master = repository.getReferenceById(id);
+        Master master = repository.getById(id);
         return master.getOrdersList();
     }
 
     @Override
     public double getMasterSalaryById(Long id) {
         double masterSalary = 0;
-        Master master = repository.getReferenceById(id);
+        Master master = repository.getById(id);
         List<Order> masterOrdersList = master.getOrdersList();
         for (Order order : masterOrdersList) {
             List<Favor> favorList = order.getFavorList();

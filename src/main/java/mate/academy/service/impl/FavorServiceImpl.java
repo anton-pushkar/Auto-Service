@@ -26,7 +26,7 @@ public class FavorServiceImpl implements FavorService {
 
     @Override
     public Favor getById(Long id) {
-        return repository.getReferenceById(id);
+        return repository.getById(id);
     }
 
     @Override

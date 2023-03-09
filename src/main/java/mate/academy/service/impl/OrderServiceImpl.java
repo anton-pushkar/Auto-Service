@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order addGoodsToOrder(Long id, Goods goods) {
-        Order order = repository.getReferenceById(id);
+        Order order = repository.getById(id);
         order.getGoodsList().add(goods);
         return repository.save(order);
     }
@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order changeStatusById(Long id, String status) {
-        Order order = repository.getReferenceById(id);
+        Order order = repository.getById(id);
         if (status.equals("UNSUCCESSFULLY_FINISHED")
                 || status.equals("SUCCESSFULLY_FINISHED")) {
             order.setFinishedTime(LocalDateTime.now());
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public double getOrderCostById(Long id) {
-        Order order = repository.getReferenceById(id);
+        Order order = repository.getById(id);
         double finishCost = 0;
         int countOfOrders = order.getCar().getOwner().getOrders().size();
         if (order.getStatus().equals(OrderStatus.UNSUCCESSFULLY_FINISHED)) {
