@@ -14,6 +14,7 @@ public class AutoServiceTtApplication {
     public static void main(String[] args) {
         SpringApplication.run(AutoServiceTtApplication.class, args);
     }
+
     public Docket apis() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()

@@ -1,5 +1,7 @@
 package mate.academy.model;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,8 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
