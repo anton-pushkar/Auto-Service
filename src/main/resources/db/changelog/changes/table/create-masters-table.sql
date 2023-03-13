@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-masters-table>
+--changeset <postgres>:<create-masters-table>
 create table if not exists public.masters
 (
     id   bigserial

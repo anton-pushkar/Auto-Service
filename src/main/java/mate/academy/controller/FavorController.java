@@ -4,6 +4,7 @@ import mate.academy.dto.mapper.FavorMapper;
 import mate.academy.dto.request.FavorRequestDto;
 import mate.academy.dto.response.FavorResponseDto;
 import mate.academy.model.Favor;
+import mate.academy.model.MasterSalaryStatus;
 import mate.academy.service.FavorService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ public class FavorController {
     @PostMapping
     public FavorResponseDto create(@RequestBody FavorRequestDto dto) {
         Favor favor = mapper.toModel(dto);
+        favor.setMasterStatus(MasterSalaryStatus.UNPAID);
         service.create(favor);
         return mapper.toResponseDto(favor);
     }
@@ -40,9 +42,9 @@ public class FavorController {
     }
 
     @PutMapping("/change-status/{id}")
-    public FavorResponseDto changeStatus(@PathVariable Long id) {
+    public FavorResponseDto changeStatus(@PathVariable Long id, String status) {
         Favor favor = service.getById(id);
-        service.changeStatus(favor);
+        service.changeStatus(favor,status);
         return mapper.toResponseDto(favor);
     }
 }

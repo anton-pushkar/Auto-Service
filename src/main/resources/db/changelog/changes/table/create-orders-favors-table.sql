@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-orders-favors-table>
+--changeset <postgres>:<create-orders-favors-table>
 create table if not exists public.orders_favors
 (
     order_id bigint not null

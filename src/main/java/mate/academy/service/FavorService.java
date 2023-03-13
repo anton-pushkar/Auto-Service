@@ -9,5 +9,5 @@ public interface FavorService {
 
     Favor getById(Long id);
 
-    Favor changeStatus(Favor favor);
+    Favor changeStatus(Favor favor, String status);
 }

@@ -62,7 +62,7 @@ public class OrderController {
         return orderMapper.toResponseDto(order);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/order-cost/{id}")
     public double getOrderCost(@PathVariable Long id) {
         return service.getOrderCostById(id);
     }

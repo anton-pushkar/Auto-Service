@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-favors-table>
+--changeset <postgres>:<create-favors-table>
 create table if not exists public.favors
 (
     id            bigserial

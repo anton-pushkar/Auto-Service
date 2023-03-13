@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-cars-owners-table>
+--changeset <postgres>:<create-cars-owners-table>
 create table if not exists public.cars_owners
 (
     owner_id bigint
