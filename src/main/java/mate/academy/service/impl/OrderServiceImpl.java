@@ -2,6 +2,7 @@ package mate.academy.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import mate.academy.model.Car;
 import mate.academy.model.Favor;
 import mate.academy.model.Goods;
 import mate.academy.model.Order;
@@ -59,6 +60,20 @@ public class OrderServiceImpl implements OrderService {
         }
         double costOfFavor = getCostOfFavor(order.getFavorList(), countOfOrders);
         double costOfGoods = getCostOfGoods(order.getGoodsList(), countOfOrders);
+        finishCost += costOfFavor + costOfGoods;
+        return finishCost;
+    }
+
+    @Override
+    public double getOrderCostForCreate(Car car, OrderStatus status,
+                                        List<Favor> favorList, List<Goods> goodsList) {
+        double finishCost = 0;
+        int countOfOrders = car.getOwner().getOrders().size();
+        if (status.equals(OrderStatus.UNSUCCESSFULLY_FINISHED)) {
+            finishCost += DIAGNOSTIC_COST;
+        }
+        double costOfFavor = getCostOfFavor(favorList, countOfOrders);
+        double costOfGoods = getCostOfGoods(goodsList, countOfOrders);
         finishCost += costOfFavor + costOfGoods;
         return finishCost;
     }

@@ -20,7 +20,7 @@ class FavorServiceImplTest {
     void changeStatusToPaid() {
         Favor favor = new Favor();
         favor.setMasterStatus(MasterSalaryStatus.UNPAID);
-        favorService.changeStatus(favor);
+        favorService.changeStatus(favor,"PAID");
         assertEquals(favor.getMasterStatus(), MasterSalaryStatus.PAID);
     }
 
@@ -28,7 +28,7 @@ class FavorServiceImplTest {
     void changeStatusToUnpaid() {
         Favor favor = new Favor();
         favor.setMasterStatus(MasterSalaryStatus.PAID);
-        favorService.changeStatus(favor);
+        favorService.changeStatus(favor, "UNPAID");
         assertEquals(favor.getMasterStatus(), MasterSalaryStatus.UNPAID);
     }
 }

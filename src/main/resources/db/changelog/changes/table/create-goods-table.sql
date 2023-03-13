@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-goods-table>
+--changeset <postgres>:<create-goods-table>
 create table if not exists public.goods
 (
     id   bigserial

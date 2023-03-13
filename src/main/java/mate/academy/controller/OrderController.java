@@ -9,7 +9,14 @@ import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Goods;
 import mate.academy.model.Order;
 import mate.academy.service.OrderService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
@@ -55,7 +62,7 @@ public class OrderController {
         return orderMapper.toResponseDto(order);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/order-cost/{id}")
     public double getOrderCost(@PathVariable Long id) {
         return service.getOrderCostById(id);
     }

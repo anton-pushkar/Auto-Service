@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-master-order-table>
+--changeset <postgres>:<create-master-order-table>
 create table if not exists public.master_order
 (
     master_id bigint not null

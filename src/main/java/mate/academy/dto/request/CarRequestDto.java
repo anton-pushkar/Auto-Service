@@ -1,9 +1,11 @@
 package mate.academy.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import mate.academy.model.Owner;
 
-@Data
+@Getter
+@Setter
 public class CarRequestDto {
     private String brand;
     private String model;

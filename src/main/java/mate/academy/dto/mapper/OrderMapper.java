@@ -6,14 +6,22 @@ import mate.academy.dto.request.OrderRequestDtoForCreate;
 import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Order;
 import mate.academy.model.OrderStatus;
+import mate.academy.service.OrderService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrderMapper {
+    private final OrderService service;
+
+    public OrderMapper(OrderService service) {
+        this.service = service;
+    }
+
     public Order toModel(OrderRequestDto dto) {
         Order order = new Order();
         order.setCar(dto.getCar());
-        order.setCost(dto.getCost());
+        order.setCost(service.getOrderCostForCreate(dto.getCar(),
+                dto.getStatus(), dto.getFavorList(), dto.getGoodsList()));
         order.setStatus(dto.getStatus());
         order.setFavorList(dto.getFavorList());
         order.setFinishedTime(dto.getFinishedTime());
@@ -45,6 +53,8 @@ public class OrderMapper {
         order.setGoodsList(dto.getGoodsList());
         order.setStartTime(LocalDateTime.now());
         order.setStatus(OrderStatus.ACCEPTED);
+        order.setCost(service.getOrderCostForCreate(dto.getCar(),
+                OrderStatus.ACCEPTED, dto.getFavorList(), dto.getGoodsList()));
         return order;
     }
 }

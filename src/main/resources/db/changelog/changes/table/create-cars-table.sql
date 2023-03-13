@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changelog<postgres>:<create-cars-table>
+--changeset <postgres>:<create-cars-table>
 create table if not exists public.cars
 (
     id     bigserial

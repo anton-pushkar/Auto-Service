@@ -30,12 +30,8 @@ public class FavorServiceImpl implements FavorService {
     }
 
     @Override
-    public Favor changeStatus(Favor favor) {
-        if (favor.getMasterStatus().equals(MasterSalaryStatus.UNPAID)) {
-            favor.setMasterStatus(MasterSalaryStatus.PAID);
-        } else {
-            favor.setMasterStatus(MasterSalaryStatus.UNPAID);
-        }
+    public Favor changeStatus(Favor favor, String status) {
+        favor.setMasterStatus(MasterSalaryStatus.valueOf(status));
         return favor;
     }
 }
