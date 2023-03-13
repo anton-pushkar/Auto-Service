@@ -11,7 +11,7 @@ REST API of auto service for getting cost of orders and masters salary and other
 - Create objects (Master, Car, Owner, Order, Favor, Goods)
 - Update objects (Master, Car, Owner, Order, Favor, Goods)
 
-Also you can select max discount for client [here](src/main/java/mate/academy/service/impl/OrderServiceImpl.java) and 
+Also you can select max discount for client [here](src/main/java/mate/academy/service/impl/OrderServiceImpl.java) and
 percentage of master`s salary [here](src/main/java/mate/academy/service/impl/MasterServiceImpl.java)
 
 # Technologies
@@ -32,9 +32,16 @@ Project uses 3-tier architecture:
 3. Presentation tier -> handled by Controllers.
 
 # Instructions to run my project
-1. Clone this repository 
+1. Clone this repository
 2. Configure connection to your database in [application.properties](src/main/resources/application.properties)
 
- By changing driver, url to your database, username and password to your own.
- 
-3. Run project 
+By changing driver, url to your database, username and password to your own.
+3. Build project
+ ```shell
+mvn clean package -DskipTests
+```
+4. Run docker
+```shell
+docker compose up
+```
+5. Open the [link](http://localhost:6868/) in your browser
