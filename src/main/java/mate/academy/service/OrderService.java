@@ -1,5 +1,6 @@
 package mate.academy.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import mate.academy.model.Car;
 import mate.academy.model.Favor;
@@ -16,8 +17,8 @@ public interface OrderService {
 
     Order changeStatusById(Long id, String status);
 
-    double getOrderCostById(Long id);
+    BigDecimal getOrderCostById(Long id);
 
-    double getOrderCostForCreate(Car car, OrderStatus status,
+    BigDecimal getOrderCostForCreate(Car car, OrderStatus status,
                                  List<Favor> favorList, List<Goods> goodsList);
 }

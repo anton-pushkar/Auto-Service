@@ -1,16 +1,15 @@
 package mate.academy.dto.response;
 
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
-import mate.academy.model.Master;
-import mate.academy.model.Order;
 
 @Getter
 @Setter
 public class FavorResponseDto {
     private Long id;
-    private Order order;
-    private Master master;
-    private Double cost;
+    private Long orderId;
+    private Long masterId;
+    private BigDecimal cost;
     private String masterStatus;
 }

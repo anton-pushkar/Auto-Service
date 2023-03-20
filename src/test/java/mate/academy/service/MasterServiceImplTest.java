@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,9 +31,9 @@ class MasterServiceImplTest {
         Favor favor1 = new Favor();
         Favor favor2 = new Favor();
         Favor favor3 = new Favor();
-        favor1.setCost(100.0);
-        favor2.setCost(200.0);
-        favor3.setCost(300.0);
+        favor1.setCost(BigDecimal.valueOf(100.0));
+        favor2.setCost(BigDecimal.valueOf(200.0));
+        favor3.setCost(BigDecimal.valueOf(300.0));
         favor1.setMasterStatus(MasterSalaryStatus.UNPAID);
         favor2.setMasterStatus(MasterSalaryStatus.PAID);
         favor3.setMasterStatus(MasterSalaryStatus.UNPAID);
@@ -41,8 +42,8 @@ class MasterServiceImplTest {
         order.setFavorList(favorList);
         testMaster.setOrdersList(List.of(order));
         Mockito.when(masterRepository.getById(1L)).thenReturn(testMaster);
-        double actual = masterService.getMasterSalaryById(1L);
-        assertEquals(actual, 160);
+        BigDecimal actual = masterService.getMasterSalaryById(1L);
+        assertEquals(BigDecimal.valueOf(160.0), actual);
         assertEquals(favor1.getMasterStatus(), MasterSalaryStatus.PAID);
         assertEquals(favor2.getMasterStatus(), MasterSalaryStatus.PAID);
         assertEquals(favor3.getMasterStatus(), MasterSalaryStatus.PAID);

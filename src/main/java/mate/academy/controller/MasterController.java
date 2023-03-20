@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.dto.mapper.MasterMapper;
@@ -54,7 +55,7 @@ public class MasterController {
     }
 
     @GetMapping("/salary/{id}")
-    public double getMasterSalary(@PathVariable Long id) {
+    public BigDecimal getMasterSalary(@PathVariable Long id) {
         return service.getMasterSalaryById(id);
     }
 }

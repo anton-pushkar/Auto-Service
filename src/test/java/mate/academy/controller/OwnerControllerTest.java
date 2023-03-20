@@ -1,6 +1,8 @@
 package mate.academy.controller;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import mate.academy.dto.mapper.OrderMapper;
+import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Order;
 import mate.academy.service.impl.OwnerServiceImpl;
 import org.hamcrest.Matchers;
@@ -23,7 +25,8 @@ import java.util.List;
 class OwnerControllerTest {
     @MockBean
     private OwnerServiceImpl ownerService;
-
+    @MockBean
+    OrderMapper orderMapper;
     @Autowired
     private MockMvc mockMvc;
     @BeforeEach
@@ -33,12 +36,14 @@ class OwnerControllerTest {
 
     @Test
     void getOrderListByUserId() {
-        List<Order> orderList = List.of(new Order(), new Order(), new Order()) ;
-        Mockito.when(ownerService.getOrdersByOwnerId(1L)).thenReturn(orderList);
+        Order order = new Order();
+        OrderResponseDto dto = new OrderResponseDto();
+        Mockito.when(ownerService.getOrdersByOwnerId(1L)).thenReturn(List.of(order));
+        Mockito.when(orderMapper.toResponseDto(order)).thenReturn(dto);
         RestAssuredMockMvc.when()
                 .get("/owners/orders/1")
                 .then()
                 .statusCode(200)
-                .body("size()", Matchers.equalTo(3));
+                .body("size()", Matchers.equalTo(1));
     }
 }

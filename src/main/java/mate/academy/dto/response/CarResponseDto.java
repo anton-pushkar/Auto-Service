@@ -2,7 +2,6 @@ package mate.academy.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import mate.academy.model.Owner;
 
 @Getter
 @Setter
@@ -12,5 +11,5 @@ public class CarResponseDto {
     private String model;
     private Integer year;
     private String number;
-    private Owner owner;
+    private Long ownerId;
 }
