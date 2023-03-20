@@ -1,5 +1,6 @@
 package mate.academy.model;
 
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,7 +31,7 @@ public class Favor {
     @ManyToOne
     @JoinColumn(name = "master_id")
     private Master master;
-    private Double cost;
+    private BigDecimal cost;
     @Enumerated(EnumType.STRING)
     private MasterSalaryStatus masterStatus;
 }

@@ -1,6 +1,8 @@
 package mate.academy.controller;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import mate.academy.dto.mapper.OrderMapper;
+import mate.academy.dto.response.OrderResponseDto;
 import mate.academy.model.Order;
 import mate.academy.service.impl.MasterServiceImpl;
 import org.hamcrest.Matchers;
@@ -24,6 +26,8 @@ class MasterControllerTest {
 
     @MockBean
     MasterServiceImpl masterService;
+    @MockBean
+    OrderMapper orderMapper;
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,12 +37,14 @@ class MasterControllerTest {
     }
     @Test
     void getMasterOrders() {
-        List<Order> orders = List.of(new Order(), new Order(), new Order());
-        Mockito.when(masterService.getMasterOrdersById(1L)).thenReturn(orders);
+        Order orders = new Order();
+        OrderResponseDto dto = new OrderResponseDto();
+        Mockito.when(masterService.getMasterOrdersById(1L)).thenReturn(List.of(orders));
+        Mockito.when(orderMapper.toResponseDto(orders)).thenReturn(dto);
         RestAssuredMockMvc.when()
                 .get("/masters/orders/1")
                 .then()
                 .statusCode(200)
-                .body("size()", Matchers.equalTo(3));
+                .body("size()", Matchers.equalTo(1));
     }
 }

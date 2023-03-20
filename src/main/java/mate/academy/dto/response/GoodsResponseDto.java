@@ -1,5 +1,6 @@
 package mate.academy.dto.response;
 
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,5 +9,5 @@ import lombok.Setter;
 public class GoodsResponseDto {
     private Long id;
     private String name;
-    private Double cost;
+    private BigDecimal cost;
 }

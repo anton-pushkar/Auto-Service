@@ -97,13 +97,13 @@ class OrderServiceImplTest {
         testOrder.setCar(car);
         Goods goods1 = new Goods(); Goods goods2 = new Goods(); Goods goods3 = new Goods();
         Favor favor1 = new Favor(); Favor favor2 = new Favor(); Favor favor3 = new Favor();
-        goods1.setCost(100.0); goods2.setCost(200.0); goods3.setCost(300.0);
-        favor1.setCost(100.0); favor2.setCost(200.0); favor3.setCost(300.0);
+        goods1.setCost(BigDecimal.valueOf(100.0)); goods2.setCost(BigDecimal.valueOf(200.0)); goods3.setCost(BigDecimal.valueOf(300.0));
+        favor1.setCost(BigDecimal.valueOf(100.0)); favor2.setCost(BigDecimal.valueOf(200.0)); favor3.setCost(BigDecimal.valueOf(300.0));
         testOrder.setFavorList(List.of(favor1,favor2,favor3));
         testOrder.setGoodsList(List.of(goods1, goods2, goods3));
         Mockito.when(orderRepository.getById(1L)).thenReturn(testOrder);
-        double actual = orderService.getOrderCostById(1L);
-        assertEquals(1182, actual);
+        BigDecimal actual = orderService.getOrderCostById(1L);
+        assertEquals(1182.0, actual.doubleValue());
     }
 
     @Test
@@ -117,12 +117,12 @@ class OrderServiceImplTest {
         testOrder.setCar(car);
         Goods goods1 = new Goods(); Goods goods2 = new Goods(); Goods goods3 = new Goods();
         Favor favor1 = new Favor(); Favor favor2 = new Favor(); Favor favor3 = new Favor();
-        goods1.setCost(100.0); goods2.setCost(200.0); goods3.setCost(300.0);
-        favor1.setCost(100.0); favor2.setCost(200.0); favor3.setCost(300.0);
+        goods1.setCost(BigDecimal.valueOf(100.0)); goods2.setCost(BigDecimal.valueOf(200.0)); goods3.setCost(BigDecimal.valueOf(300.0));
+        favor1.setCost(BigDecimal.valueOf(100.0)); favor2.setCost(BigDecimal.valueOf(200.0)); favor3.setCost(BigDecimal.valueOf(300.0));
         testOrder.setFavorList(List.of(favor1,favor2,favor3));
         testOrder.setGoodsList(List.of(goods1, goods2, goods3));
         Mockito.when(orderRepository.getById(1L)).thenReturn(testOrder);
-        double actual = orderService.getOrderCostById(1L);
-        assertEquals(1682, actual);
+        BigDecimal actual = orderService.getOrderCostById(1L);
+        assertEquals(1682.0, actual.doubleValue());
     }
 }

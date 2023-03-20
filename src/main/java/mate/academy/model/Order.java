@@ -1,5 +1,6 @@
 package mate.academy.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Entity;
@@ -45,7 +46,7 @@ public class Order {
     private List<Goods> goodsList;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    private Double cost;
+    private BigDecimal cost;
     private LocalDateTime finishedTime;
 
 }

@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import java.math.BigDecimal;
 import mate.academy.dto.mapper.GoodsMapper;
 import mate.academy.dto.mapper.OrderMapper;
 import mate.academy.dto.request.GoodsRequestDto;
@@ -63,7 +64,7 @@ public class OrderController {
     }
 
     @GetMapping("/order-cost/{id}")
-    public double getOrderCost(@PathVariable Long id) {
+    public BigDecimal getOrderCost(@PathVariable Long id) {
         return service.getOrderCostById(id);
     }
 }
