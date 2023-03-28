@@ -1,5 +1,7 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.math.BigDecimal;
 import mate.academy.dto.mapper.GoodsMapper;
 import mate.academy.dto.mapper.OrderMapper;
@@ -33,6 +35,7 @@ public class OrderController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create order")
     public OrderResponseDto create(@RequestBody OrderRequestDtoForCreate dto) {
         Order order = orderMapper.toModelForCreate(dto);
         service.create(order);
@@ -40,7 +43,9 @@ public class OrderController {
     }
 
     @PostMapping("/add-goods/{id}")
+    @ApiOperation(value = "add goods to order by id ")
     public OrderResponseDto addGoodsToOrder(@PathVariable Long id,
+                                            @ApiParam(value = "goods request dto")
                                             @RequestBody GoodsRequestDto dto) {
         Goods goods = goodsMapper.toModel(dto);
         Order order = service.addGoodsToOrder(id, goods);
@@ -48,6 +53,7 @@ public class OrderController {
     }
 
     @PatchMapping("/{id}")
+    @ApiOperation(value = "update order by id")
     public OrderResponseDto update(@PathVariable Long id,
                                    @RequestBody OrderRequestDto dto) {
         Order order = orderMapper.toModel(dto);
@@ -57,6 +63,7 @@ public class OrderController {
     }
 
     @PutMapping("/change-status/{id}")
+    @ApiOperation(value = "change order status by id")
     public OrderResponseDto changeStatus(@PathVariable Long id,
                                          String status) {
         Order order = service.changeStatusById(id, status);
@@ -64,6 +71,7 @@ public class OrderController {
     }
 
     @GetMapping("/order-cost/{id}")
+    @ApiOperation(value = "get order cost by id")
     public BigDecimal getOrderCost(@PathVariable Long id) {
         return service.getOrderCostById(id);
     }

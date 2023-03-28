@@ -36,10 +36,10 @@ public class OrderMapper {
         Order order = new Order();
         Car car = carRepository.getById(dto.getCarId());
         order.setCar(car);
-        List<Goods> goods = dto.getFavorsId().stream()
+        List<Goods> goods = dto.getFavorIds().stream()
                 .map(goodsRepository::getById)
                 .collect(Collectors.toList());
-        List<Favor> favors = dto.getFavorsId().stream()
+        List<Favor> favors = dto.getFavorIds().stream()
                 .map(favorRepository::getById)
                 .collect(Collectors.toList());
         order.setFavorList(favors);
@@ -58,12 +58,12 @@ public class OrderMapper {
         dto.setCost(order.getCost());
         dto.setId(order.getId());
         dto.setStatus(order.getStatus());
-        dto.setFavorsId(order.getFavorList().stream()
+        dto.setFavorIds(order.getFavorList().stream()
                 .map(Favor::getId)
                 .collect(Collectors.toList()));
         dto.setFinishedTime(order.getFinishedTime());
         dto.setDescription(order.getDescription());
-        dto.setGoodsId(order.getGoodsList().stream()
+        dto.setGoodsIds(order.getGoodsList().stream()
                 .map(Goods::getId)
                 .collect(Collectors.toList()));
         return dto;
@@ -74,10 +74,10 @@ public class OrderMapper {
         Car car = carRepository.getById(dto.getCarId());
         order.setCar(car);
         order.setDescription(dto.getDescription());
-        List<Favor> favors = dto.getFavorsId().stream()
+        List<Favor> favors = dto.getFavorIds().stream()
                 .map(favorRepository::getById)
                 .collect(Collectors.toList());
-        List<Goods> goods = dto.getFavorsId().stream()
+        List<Goods> goods = dto.getFavorIds().stream()
                 .map(goodsRepository::getById)
                 .collect(Collectors.toList());
         order.setStartTime(LocalDateTime.now());

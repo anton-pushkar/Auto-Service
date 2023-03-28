@@ -14,8 +14,8 @@ public class OrderResponseDto {
     private Long carId;
     private String description;
     private LocalDateTime startTime;
-    private List<Long> favorsId;
-    private List<Long> goodsId;
+    private List<Long> favorIds;
+    private List<Long> goodsIds;
     private OrderStatus status;
     private BigDecimal cost;
     private LocalDateTime finishedTime;

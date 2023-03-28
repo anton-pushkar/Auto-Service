@@ -10,7 +10,7 @@ import mate.academy.model.OrderStatus;
 public class OrderRequestDto {
     private Long carId;
     private String description;
-    private List<Long> favorsId;
-    private List<Long> goodsId;
+    private List<Long> favorIds;
+    private List<Long> goodsIds;
     private OrderStatus status;
 }

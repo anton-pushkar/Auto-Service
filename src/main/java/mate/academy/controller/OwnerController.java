@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.dto.mapper.OrderMapper;
@@ -31,6 +32,7 @@ public class OwnerController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create owner")
     public OwnerResponseDto create(@RequestBody OwnerRequestDto dto) {
         Owner owner = mapper.toModel(dto);
         service.create(owner);
@@ -38,6 +40,7 @@ public class OwnerController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "update owner by id")
     public OwnerResponseDto update(@PathVariable Long id,
                                    @RequestBody OwnerRequestDto dto) {
         Owner owner = mapper.toModel(dto);
@@ -47,6 +50,7 @@ public class OwnerController {
     }
 
     @GetMapping("/orders/{id}")
+    @ApiOperation(value = "get owners orders by id")
     public List<OrderResponseDto> getOrderListByUserId(@PathVariable Long id) {
         return service.getOrdersByOwnerId(id).stream()
                 .map(orderMapper::toResponseDto)

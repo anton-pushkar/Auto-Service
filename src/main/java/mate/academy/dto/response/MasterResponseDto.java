@@ -9,5 +9,5 @@ import lombok.Setter;
 public class MasterResponseDto {
     private Long id;
     private String name;
-    private List<Long> ordersId;
+    private List<Long> orderIds;
 }

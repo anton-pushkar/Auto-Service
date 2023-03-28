@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import java.util.List;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import mate.academy.dto.mapper.OrderMapper;
 import mate.academy.dto.response.OrderResponseDto;
@@ -17,8 +18,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -28,7 +27,6 @@ class MasterControllerTest {
     MasterServiceImpl masterService;
     @MockBean
     OrderMapper orderMapper;
-
     @Autowired
     private MockMvc mockMvc;
     @BeforeEach

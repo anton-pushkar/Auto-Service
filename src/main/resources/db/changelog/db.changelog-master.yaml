@@ -1,17 +1,5 @@
 databaseChangeLog:
   - include:
-      file: /db/changelog/changes/seq/create-cars-seq.sql
-  - include:
-      file: /db/changelog/changes/seq/create-owners-seq.sql
-  - include:
-      file: /db/changelog/changes/seq/create-favors-seq.sql
-  - include:
-      file: /db/changelog/changes/seq/create-goods-seq.sql
-  - include:
-      file: /db/changelog/changes/seq/create-masters-seq.sql
-  - include:
-      file: /db/changelog/changes/seq/create-orders-seq.sql
-  - include:
       file: /db/changelog/changes/table/create-owners-table.sql
   - include:
       file: /db/changelog/changes/table/create-cars-table.sql

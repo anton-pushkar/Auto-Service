@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class MasterRequestDto {
     private String name;
-    private List<Long> ordersId;
+    private List<Long> orderIds;
 }

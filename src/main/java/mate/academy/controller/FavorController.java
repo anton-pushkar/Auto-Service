@@ -1,5 +1,7 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import mate.academy.dto.mapper.FavorMapper;
 import mate.academy.dto.request.FavorRequestDto;
 import mate.academy.dto.response.FavorResponseDto;
@@ -25,6 +27,7 @@ public class FavorController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create favor")
     public FavorResponseDto create(@RequestBody FavorRequestDto dto) {
         Favor favor = mapper.toModel(dto);
         favor.setMasterStatus(MasterSalaryStatus.UNPAID);
@@ -33,6 +36,7 @@ public class FavorController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "update favor by id")
     public FavorResponseDto update(@PathVariable Long id,
                                    @RequestBody FavorRequestDto dto) {
         Favor favor = mapper.toModel(dto);
@@ -42,7 +46,9 @@ public class FavorController {
     }
 
     @PutMapping("/change-status/{id}")
-    public FavorResponseDto changeStatus(@PathVariable Long id, String status) {
+    @ApiOperation(value = "change favor status bu id")
+    public FavorResponseDto changeStatus(@PathVariable Long id,
+                                         @ApiParam(value = "status") String status) {
         Favor favor = service.getById(id);
         service.changeStatus(favor,status);
         return mapper.toResponseDto(favor);
