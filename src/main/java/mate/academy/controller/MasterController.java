@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +33,7 @@ public class MasterController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create master")
     public MasterResponseDto create(@RequestBody MasterRequestDto dto) {
         Master master = mapper.toModel(dto);
         service.create(master);
@@ -39,6 +41,7 @@ public class MasterController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "update master by id")
     public MasterResponseDto update(@PathVariable Long id,
                                     @RequestBody MasterRequestDto dto) {
         Master master = mapper.toModel(dto);
@@ -48,6 +51,7 @@ public class MasterController {
     }
 
     @GetMapping("/orders/{id}")
+    @ApiOperation(value = "get masters orders by id")
     public List<OrderResponseDto> getMasterOrders(@PathVariable Long id) {
         return service.getMasterOrdersById(id).stream()
                 .map(orderMapper::toResponseDto)
@@ -55,6 +59,7 @@ public class MasterController {
     }
 
     @GetMapping("/salary/{id}")
+    @ApiOperation(value = "get masters salary by id")
     public BigDecimal getMasterSalary(@PathVariable Long id) {
         return service.getMasterSalaryById(id);
     }

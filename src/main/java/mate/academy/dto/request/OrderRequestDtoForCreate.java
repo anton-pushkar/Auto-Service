@@ -9,6 +9,6 @@ import lombok.Setter;
 public class OrderRequestDtoForCreate {
     private Long carId;
     private String description;
-    private List<Long> favorsId;
-    private List<Long> goodsId;
+    private List<Long> favorIds;
+    private List<Long> goodsIds;
 }

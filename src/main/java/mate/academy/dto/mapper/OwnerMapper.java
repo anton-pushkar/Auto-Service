@@ -22,10 +22,10 @@ public class OwnerMapper {
 
     public Owner toModel(OwnerRequestDto dto) {
         Owner owner = new Owner();
-        owner.setCarList(dto.getCarsId().stream()
+        owner.setCarList(dto.getCarIds().stream()
                 .map(carRepository::getById)
                 .collect(Collectors.toList()));
-        owner.setOrders(dto.getOrdersId().stream()
+        owner.setOrders(dto.getOrderIds().stream()
                 .map(orderRepository::getById)
                 .collect(Collectors.toList()));
         return owner;
@@ -33,10 +33,10 @@ public class OwnerMapper {
 
     public OwnerResponseDto toResponseDto(Owner owner) {
         OwnerResponseDto dto = new OwnerResponseDto();
-        dto.setCarsId(owner.getCarList().stream()
+        dto.setCarIds(owner.getCarList().stream()
                 .map(Car::getId)
                 .collect(Collectors.toList()));
-        dto.setOrdersId(owner.getOrders().stream()
+        dto.setOrderIds(owner.getOrders().stream()
                 .map(Order::getId)
                 .collect(Collectors.toList()));
         dto.setId(owner.getId());

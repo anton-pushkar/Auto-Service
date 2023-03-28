@@ -20,7 +20,7 @@ public class MasterMapper {
     public Master toModel(MasterRequestDto dto) {
         Master master = new Master();
         master.setName(dto.getName());
-        List<Order> orders = dto.getOrdersId().stream()
+        List<Order> orders = dto.getOrderIds().stream()
                 .map(repository::getById)
                 .collect(Collectors.toList());
         master.setOrdersList(orders);
@@ -31,7 +31,7 @@ public class MasterMapper {
         MasterResponseDto dto = new MasterResponseDto();
         dto.setName(master.getName());
         dto.setId(master.getId());
-        dto.setOrdersId(master.getOrdersList().stream()
+        dto.setOrderIds(master.getOrdersList().stream()
                 .map(Order::getId)
                 .collect(Collectors.toList()));
         return dto;

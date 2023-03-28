@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
 import mate.academy.dto.mapper.CarMapper;
 import mate.academy.dto.request.CarRequestDto;
 import mate.academy.dto.response.CarResponseDto;
@@ -24,6 +25,7 @@ public class CarController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create new car")
     public CarResponseDto create(@RequestBody CarRequestDto dto) {
         Car car = mapper.toModel(dto);
         service.create(car);
@@ -31,6 +33,7 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "update car by id")
     public CarResponseDto update(@PathVariable Long id,
                                  @RequestBody CarRequestDto dto) {
         Car car = mapper.toModel(dto);

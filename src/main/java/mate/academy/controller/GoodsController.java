@@ -1,5 +1,6 @@
 package mate.academy.controller;
 
+import io.swagger.annotations.ApiOperation;
 import mate.academy.dto.mapper.GoodsMapper;
 import mate.academy.dto.request.GoodsRequestDto;
 import mate.academy.dto.response.GoodsResponseDto;
@@ -24,6 +25,7 @@ public class GoodsController {
     }
 
     @PostMapping
+    @ApiOperation(value = "create goods")
     public GoodsResponseDto create(@RequestBody GoodsRequestDto dto) {
         Goods goods = mapper.toModel(dto);
         service.add(goods);
@@ -31,6 +33,7 @@ public class GoodsController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "update goods by id")
     public GoodsResponseDto update(@PathVariable Long id,
                                    @RequestBody GoodsRequestDto dto) {
         Goods goods = mapper.toModel(dto);
