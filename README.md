@@ -44,4 +44,4 @@ mvn clean package -DskipTests
 ```shell
 docker compose up
 ```
-5. Open the [link](http://localhost:6868/) in your browser
+5. Open the [link](http://localhost:6868/swagger-ui.html) in your browser
