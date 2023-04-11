@@ -4,7 +4,7 @@ create table if not exists public.favors
 (
     id            bigserial
     primary key,
-    cost          double precision not null,
+    cost          numeric(19, 2)  not null,
     master_status varchar(255),
     master_id     bigint
     constraint fkr59vnppfqqaouem7gv1u12h71

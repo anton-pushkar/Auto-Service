@@ -4,7 +4,7 @@ create table if not exists public.goods
 (
     id   bigserial
     primary key,
-    cost double precision not null,
+    cost numeric(19, 2) not null,
     name varchar(255)
     );
 
