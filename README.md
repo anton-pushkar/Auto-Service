@@ -32,16 +32,22 @@ Project uses 3-tier architecture:
 3. Presentation tier -> handled by Controllers.
 
 # Instructions to run my project
+Docker
+1. Clone this repository
+2. Run docker
+```shell
+docker-compose up
+```
+3. Open the [link](http://localhost:6868/swagger-ui.html) in your browser
+
+In IDE
 1. Clone this repository
 2. Configure connection to your database in [application.properties](src/main/resources/application.properties)
 
 By changing driver, url to your database, username and password to your own.
+
 3. Build project
  ```shell
 mvn clean package -DskipTests
 ```
-4. Run docker
-```shell
-docker compose up
-```
-5. Open the [link](http://localhost:6868/swagger-ui.html) in your browser
+4. Open the [link](http://localhost:8080/swagger-ui.html) in your browser
