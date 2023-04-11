@@ -4,9 +4,9 @@ create table if not exists public.orders
 (
     id                  bigserial
     primary key,
-    cost                double precision not null,
+    cost                numeric(19, 2) not null,
     finished_time       timestamp(6),
-    problem_description varchar(255),
+    description varchar(255),
     start_time          timestamp(6),
     status              varchar(255),
     car_id              bigint

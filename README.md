@@ -11,8 +11,8 @@ REST API of auto service for getting cost of orders and masters salary and other
 - Create objects (Master, Car, Owner, Order, Favor, Goods)
 - Update objects (Master, Car, Owner, Order, Favor, Goods)
 
-Also you can select max discount for client [here](src/main/java/mate/academy/service/impl/OrderServiceImpl.java) and
-percentage of master`s salary [here](src/main/java/mate/academy/service/impl/MasterServiceImpl.java)
+Also you can select max discount for client [here](src/main/java/autoservise/service/impl/OrderServiceImpl.java) and
+percentage of master`s salary [here](src/main/java/autoservise/service/impl/MasterServiceImpl.java)
 
 # Technologies
 - Maven

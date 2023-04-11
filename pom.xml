@@ -8,7 +8,7 @@
         <version>2.5.9</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>mate.academy</groupId>
+    <groupId>autoservice</groupId>
     <artifactId>AutoService-TT</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>AutoService-TT</name>
