@@ -12,7 +12,7 @@ create table if not exists public.orders
     car_id              bigint
     constraint fkd2p23ixwrrt395glgi9nnbj23
     references public.cars,
-    orders_id           bigint
+    owner_id           bigint
     constraint fkmmheqr23cmh7344m5rl0ftjnc
     references public.owners
     );

@@ -1,10 +1,13 @@
 package autoservise.dto.mapper;
 
 import autoservise.dto.request.CarRequestDto;
+import autoservise.dto.request.create.CarRequestDtoForCreate;
 import autoservise.dto.response.CarResponseDto;
 import autoservise.model.Car;
 import autoservise.model.Owner;
 import autoservise.repository.OwnerRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +16,31 @@ public class CarMapper {
 
     public CarMapper(OwnerRepository repository) {
         this.repository = repository;
+    }
+
+    public Car toModelForCreate(CarRequestDtoForCreate dto) {
+        Car car = new Car();
+        car.setModel(dto.getModel());
+        car.setYear(dto.getYear());
+        car.setBrand(dto.getBrand());
+        car.setNumber(dto.getNumber());
+        Owner owner = repository.getById(dto.getOwnerId());
+        if (owner != null) {
+            car.setOwner(owner);
+            if (owner.getCarList() == null) {
+                owner.setCarList(new ArrayList<>());
+                List<Car> carList = owner.getCarList();
+                carList.add(car);
+                owner.setCarList(carList);
+            } else {
+                List<Car> carList = owner.getCarList();
+                carList.add(car);
+                owner.setCarList(carList);
+            }
+        } else {
+            throw new RuntimeException("You enter wrong owner id");
+        }
+        return car;
     }
 
     public Car toModel(CarRequestDto dto) {

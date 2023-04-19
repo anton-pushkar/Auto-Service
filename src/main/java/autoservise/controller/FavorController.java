@@ -2,11 +2,12 @@ package autoservise.controller;
 
 import autoservise.dto.mapper.FavorMapper;
 import autoservise.dto.request.FavorRequestDto;
+import autoservise.dto.request.create.FavorRequestDtoForCreate;
 import autoservise.dto.response.FavorResponseDto;
 import autoservise.model.Favor;
 import autoservise.service.FavorService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,13 +28,13 @@ public class FavorController {
 
     @PostMapping
     @ApiOperation(value = "create favor")
-    public FavorResponseDto create(@RequestBody FavorRequestDto dto) {
-        Favor favor = mapper.toModel(dto);
+    public FavorResponseDto create(@RequestBody FavorRequestDtoForCreate dto) {
+        Favor favor = mapper.toModelForCreate(dto);
         service.create(favor);
         return mapper.toResponseDto(favor);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @ApiOperation(value = "update favor by id")
     public FavorResponseDto update(@PathVariable Long id,
                                    @RequestBody FavorRequestDto dto) {
@@ -46,7 +47,7 @@ public class FavorController {
     @PutMapping("/change-status/{id}")
     @ApiOperation(value = "change favor status bu id")
     public FavorResponseDto changeStatus(@PathVariable Long id,
-                                         @ApiParam(value = "status") String status) {
+                                          String status) {
         Favor favor = service.getById(id);
         service.changeStatus(favor,status);
         return mapper.toResponseDto(favor);

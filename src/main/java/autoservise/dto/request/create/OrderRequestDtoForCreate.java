@@ -1,6 +1,5 @@
-package autoservise.dto.request;
+package autoservise.dto.request.create;
 
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +8,6 @@ import lombok.Setter;
 public class OrderRequestDtoForCreate {
     private Long carId;
     private String description;
-    private List<Long> favorIds;
-    private List<Long> goodsIds;
+    private String masterName;
+    private Long ownerId;
 }

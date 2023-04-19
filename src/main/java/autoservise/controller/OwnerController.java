@@ -3,6 +3,7 @@ package autoservise.controller;
 import autoservise.dto.mapper.OrderMapper;
 import autoservise.dto.mapper.OwnerMapper;
 import autoservise.dto.request.OwnerRequestDto;
+import autoservise.dto.request.create.OwnerRequestDtoForCreate;
 import autoservise.dto.response.OrderResponseDto;
 import autoservise.dto.response.OwnerResponseDto;
 import autoservise.model.Owner;
@@ -11,9 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,13 +34,13 @@ public class OwnerController {
 
     @PostMapping
     @ApiOperation(value = "create owner")
-    public OwnerResponseDto create(@RequestBody OwnerRequestDto dto) {
-        Owner owner = mapper.toModel(dto);
+    public OwnerResponseDto create(@RequestBody OwnerRequestDtoForCreate dto) {
+        Owner owner = mapper.toModelForCreate(dto);
         service.create(owner);
         return mapper.toResponseDto(owner);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @ApiOperation(value = "update owner by id")
     public OwnerResponseDto update(@PathVariable Long id,
                                    @RequestBody OwnerRequestDto dto) {
