@@ -5,6 +5,7 @@ import autoservise.model.Favor;
 import autoservise.model.Goods;
 import autoservise.model.Order;
 import autoservise.model.OrderStatus;
+import autoservise.repository.GoodsRepository;
 import autoservise.repository.OrderRepository;
 import autoservise.service.OrderService;
 import java.math.BigDecimal;
@@ -18,9 +19,11 @@ public class OrderServiceImpl implements OrderService {
     private static final double MAX_FAVOR_DISCOUNT = 30;
     private static final double MAX_GOODS_DISCOUNT = 15;
     private final OrderRepository repository;
+    private final GoodsRepository goodsRepository;
 
-    public OrderServiceImpl(OrderRepository repository) {
+    public OrderServiceImpl(OrderRepository repository, GoodsRepository goodsRepository) {
         this.repository = repository;
+        this.goodsRepository = goodsRepository;
     }
 
     @Override
@@ -31,12 +34,21 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order addGoodsToOrder(Long id, Goods goods) {
         Order order = repository.getById(id);
+        goodsRepository.save(goods);
         order.getGoodsList().add(goods);
+        order.setCost(getOrderCostForMapper(order.getCar(),
+                order.getStatus(),
+                order.getFavorList(),
+                order.getGoodsList()));
         return repository.save(order);
     }
 
     @Override
     public Order update(Order order) {
+        order.setCost(getOrderCostForMapper(order.getCar(),
+                order.getStatus(),
+                order.getFavorList(),
+                order.getGoodsList()));
         return repository.save(order);
     }
 
@@ -48,7 +60,11 @@ public class OrderServiceImpl implements OrderService {
             order.setFinishedTime(LocalDateTime.now());
         }
         order.setStatus(OrderStatus.valueOf(status));
-        return order;
+        order.setCost(getOrderCostForMapper(order.getCar(),
+                order.getStatus(),
+                order.getFavorList(),
+                order.getGoodsList()));
+        return repository.save(order);
     }
 
     @Override
@@ -62,11 +78,13 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal costOfFavor = getCostOfFavor(order.getFavorList(), countOfOrders);
         BigDecimal costOfGoods = getCostOfGoods(order.getGoodsList(), countOfOrders);
         finishCost = finishCost.add(costOfFavor).add(costOfGoods);
+        order.setCost(finishCost);
+        repository.save(order);
         return finishCost;
     }
 
     @Override
-    public BigDecimal getOrderCostForCreate(Car car, OrderStatus status,
+    public BigDecimal getOrderCostForMapper(Car car, OrderStatus status,
                                             List<Favor> favorList, List<Goods> goodsList) {
         BigDecimal finishCost = BigDecimal.valueOf(0);
         int countOfOrders = car.getOwner().getOrders().size();
@@ -79,17 +97,29 @@ public class OrderServiceImpl implements OrderService {
         return finishCost;
     }
 
+    @Override
+    public BigDecimal getOrderCostForCreate(Car car, OrderStatus status) {
+        BigDecimal finishCost = BigDecimal.valueOf(0);
+        int countOfOrders = car.getOwner().getOrders().size();
+        if (status.equals(OrderStatus.UNSUCCESSFULLY_FINISHED)) {
+            finishCost = finishCost.add(DIAGNOSTIC_COST);
+        }
+        return finishCost;
+    }
+
     private BigDecimal getCostOfFavor(List<Favor> favorList, int countOfOrders) {
         BigDecimal favorsCost = new BigDecimal(0);
-        for (Favor favor : favorList) {
-            if (countOfOrders * 2 < MAX_FAVOR_DISCOUNT) {
-                favorsCost = favorsCost.add(favor.getCost().subtract(favor.getCost()
-                        .multiply(BigDecimal.valueOf(countOfOrders))
-                        .multiply(BigDecimal.valueOf(2)).divide(BigDecimal.valueOf(100))));
-            } else {
-                favorsCost = favorsCost.add(favor.getCost()
-                        .subtract(favor.getCost()
-                                .multiply(BigDecimal.valueOf(MAX_FAVOR_DISCOUNT))));
+        if (favorList != null) {
+            for (Favor favor : favorList) {
+                if (countOfOrders * 2 < MAX_FAVOR_DISCOUNT) {
+                    favorsCost = favorsCost.add(favor.getCost().subtract(favor.getCost()
+                            .multiply(BigDecimal.valueOf(countOfOrders))
+                            .multiply(BigDecimal.valueOf(2)).divide(BigDecimal.valueOf(100))));
+                } else {
+                    favorsCost = favorsCost.add(favor.getCost()
+                            .subtract(favor.getCost()
+                                    .multiply(BigDecimal.valueOf(MAX_FAVOR_DISCOUNT))));
+                }
             }
         }
         return favorsCost;
@@ -97,15 +127,17 @@ public class OrderServiceImpl implements OrderService {
 
     private BigDecimal getCostOfGoods(List<Goods> goodsList, int countOfOrders) {
         BigDecimal goodsCost = BigDecimal.valueOf(0);
-        for (Goods goods : goodsList) {
-            if (countOfOrders < MAX_GOODS_DISCOUNT) {
-                goodsCost = goodsCost.add(goods.getCost().subtract(goods.getCost()
-                        .multiply(BigDecimal.valueOf(countOfOrders)
-                                .divide(BigDecimal.valueOf(100)))));
-            } else {
-                goodsCost = goodsCost.add(goods.getCost().subtract(goods.getCost()
-                        .multiply(BigDecimal.valueOf(MAX_GOODS_DISCOUNT)
-                                .divide(BigDecimal.valueOf(100)))));
+        if (goodsList != null) {
+            for (Goods goods : goodsList) {
+                if (countOfOrders < MAX_GOODS_DISCOUNT) {
+                    goodsCost = goodsCost.add(goods.getCost().subtract(goods.getCost()
+                            .multiply(BigDecimal.valueOf(countOfOrders)
+                                    .divide(BigDecimal.valueOf(100)))));
+                } else {
+                    goodsCost = goodsCost.add(goods.getCost().subtract(goods.getCost()
+                            .multiply(BigDecimal.valueOf(MAX_GOODS_DISCOUNT)
+                                    .divide(BigDecimal.valueOf(100)))));
+                }
             }
         }
         return goodsCost;

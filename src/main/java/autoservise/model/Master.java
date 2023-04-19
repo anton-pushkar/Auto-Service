@@ -1,5 +1,6 @@
 package autoservise.model;
 
+import com.sun.istack.NotNull;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class Master {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String name;
     @OneToMany
     @JoinTable(name = "master_order",

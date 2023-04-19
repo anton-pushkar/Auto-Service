@@ -19,6 +19,8 @@ public interface OrderService {
 
     BigDecimal getOrderCostById(Long id);
 
-    BigDecimal getOrderCostForCreate(Car car, OrderStatus status,
+    BigDecimal getOrderCostForCreate(Car car, OrderStatus status);
+
+    BigDecimal getOrderCostForMapper(Car car, OrderStatus status,
                                      List<Favor> favorList, List<Goods> goodsList);
 }

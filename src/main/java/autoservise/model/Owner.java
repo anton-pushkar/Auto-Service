@@ -27,6 +27,6 @@ public class Owner {
             inverseJoinColumns = @JoinColumn(name = "car_id"))
     private List<Car> carList;
     @OneToMany
-    @JoinColumn(name = "orders_id")
+    @JoinColumn(name = "owner_id")
     private List<Order> orders;
 }

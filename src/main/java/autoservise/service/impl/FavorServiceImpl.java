@@ -33,6 +33,6 @@ public class FavorServiceImpl implements FavorService {
     @Override
     public Favor changeStatus(Favor favor, String status) {
         favor.setMasterStatus(MasterSalaryStatus.valueOf(status));
-        return favor;
+        return repository.save(favor);
     }
 }

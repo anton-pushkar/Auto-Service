@@ -4,7 +4,7 @@ import autoservise.dto.mapper.GoodsMapper;
 import autoservise.dto.mapper.OrderMapper;
 import autoservise.dto.request.GoodsRequestDto;
 import autoservise.dto.request.OrderRequestDto;
-import autoservise.dto.request.OrderRequestDtoForCreate;
+import autoservise.dto.request.create.OrderRequestDtoForCreate;
 import autoservise.dto.response.OrderResponseDto;
 import autoservise.model.Goods;
 import autoservise.model.Order;

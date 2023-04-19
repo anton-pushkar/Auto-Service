@@ -1,6 +1,7 @@
 package autoservise.dto.mapper;
 
 import autoservise.dto.request.OwnerRequestDto;
+import autoservise.dto.request.create.OwnerRequestDtoForCreate;
 import autoservise.dto.response.OwnerResponseDto;
 import autoservise.model.Car;
 import autoservise.model.Order;
@@ -31,14 +32,27 @@ public class OwnerMapper {
         return owner;
     }
 
+    public Owner toModelForCreate(OwnerRequestDtoForCreate dto) {
+        Owner owner = new Owner();
+        return owner;
+    }
+
     public OwnerResponseDto toResponseDto(Owner owner) {
         OwnerResponseDto dto = new OwnerResponseDto();
-        dto.setCarIds(owner.getCarList().stream()
-                .map(Car::getId)
-                .collect(Collectors.toList()));
-        dto.setOrderIds(owner.getOrders().stream()
-                .map(Order::getId)
-                .collect(Collectors.toList()));
+        if (owner.getCarList() == null) {
+            dto.setCarIds(null);
+        } else {
+            dto.setCarIds(owner.getCarList().stream()
+                    .map(Car::getId)
+                    .collect(Collectors.toList()));
+        }
+        if (owner.getOrders() == null) {
+            dto.setOrderIds(null);
+        } else {
+            dto.setOrderIds(owner.getOrders().stream()
+                    .map(Order::getId)
+                    .collect(Collectors.toList()));
+        }
         dto.setId(owner.getId());
         return dto;
     }
