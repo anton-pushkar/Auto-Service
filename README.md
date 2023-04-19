@@ -51,3 +51,10 @@ By changing driver, url to your database, username and password to your own.
 mvn clean package -DskipTests
 ```
 4. Open the [link](http://localhost:8080/swagger-ui.html) in your browser
+
+# Instruction of creation
+1. Create Master
+2. Create Owner
+3. Create Car
+4. Create Order
+5. Create Favor and Goods
